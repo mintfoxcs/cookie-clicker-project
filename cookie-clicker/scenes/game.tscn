@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dmcy6ml1pxotx"]
+
+[ext_resource type="Script" uid="uid://b3gi678e3ue7k" path="res://scripts/game.gd" id="1_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://cdglll2kunvrf" path="res://assets/img/cookie.png" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://gcxg3gtl24sy" path="res://scripts/stats.gd" id="3_lbhrr"]
+
+[node name="Game" type="Control" unique_id=1335026654]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lnu2h")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=699764419]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CookieButton" type="TextureButton" parent="CenterContainer" unique_id=679516687]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("1_uwrxv")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Stats" type="VBoxContainer" parent="." unique_id=267923661]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("3_lbhrr")
+
+[node name="CookieLabel" type="Label" parent="Stats" unique_id=1119861904]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0 Cookies"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="cookies_changed" from="." to="Stats" method="_on_game_cookies_changed"]
+[connection signal="button_down" from="CenterContainer/CookieButton" to="." method="_on_cookie_button_down"]
